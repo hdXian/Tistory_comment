@@ -5,7 +5,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 
 class MemoryCommentRepositoryTest {
@@ -23,10 +22,10 @@ class MemoryCommentRepositoryTest {
         comment.setCommentTime(LocalDateTime.now());
 
         // when
-        commentRepository.save(comment);
+        commentRepository.add(comment);
 
         // then
-        Comment res = commentRepository.findById(comment.getId()).get();
+        Comment res = commentRepository.search(comment.getId()).get();
 
         Assertions.assertThat(res).isEqualTo(comment);
         
@@ -43,11 +42,11 @@ class MemoryCommentRepositoryTest {
         comment.setCommentTime(LocalDateTime.now());
 
         // when
-        commentRepository.save(comment);
-        commentRepository.deleteById(comment.getId());
+        commentRepository.add(comment);
+        commentRepository.delete(comment.getId());
 
         // then
-        Assertions.assertThat(commentRepository.findById(comment.getId()).isPresent()).isFalse();
+        Assertions.assertThat(commentRepository.search(comment.getId()).isPresent()).isFalse();
 
     }
 

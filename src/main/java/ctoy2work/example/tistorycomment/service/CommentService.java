@@ -17,25 +17,29 @@ public class CommentService {
     }
 
 
+    // 댓글 추가
     public Long AddComment(Comment comment) {
-        commentRepository.save(comment);
+        commentRepository.add(comment);
         return comment.getId();
     }
 
+    // 댓글 목록 불러오기
     public List<Comment> getCommentList() {
         return commentRepository.findAll();
     }
 
+    // 댓글 삭제
     public Optional<Comment> DeleteComment(Comment comment) {
-        return commentRepository.deleteById(comment.getId());
+        return commentRepository.delete(comment.getId());
     }
 
+    // 댓글 수정
     public Optional<Comment> ModifyComment(Long commentId, String newText) {
-        Comment res = commentRepository.findById(commentId).get();
+        Comment modifiedComment = commentRepository.search(commentId).get();
 
-        res.setComment(newText);
+        modifiedComment.setComment(newText);
 
-        return Optional.of(res);
+        return commentRepository.modify(modifiedComment);
     }
 
 }
