@@ -48,8 +48,8 @@
             <div class="hdxian agari" th:each="comment : ${comments}">
                 <span class="nickname" th:text="${comment.nickname}"></span>
                 <span class="date" th:text="${comment.commentTime}"></span>
-                <a href="/comments/modify" class="button">수정</a>
-                <a href="/comments/delete" class="button">삭제</a>
+                <a th:href="@{/comments/modify/{id}(id = ${comment.id})}" class="button">수정</a>
+                <a th:href="@{/comments/delete/{id}(id = ${comment.id})}" class="button">삭제</a>
 
             <p th:text="${comment.commentText}"></p>
             </div>

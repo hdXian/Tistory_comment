@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <style>
+    .cmt {
+        border: 1px solid black;
+        background-color: white;
+        padding-left: 0px;
+        padding-top: 0px;
+        padding-right: 217px;
+        padding-bottom: 50px;
+      }
+  </style>
+</head>
+<body>
+<div class="container">
+  <form th:action="@{/comments/update/{id}(id= ${comment.id})}" method="post">
+    <div class="form-group">
+      <input type="text" th:value="${comment.commentText}" id="text" name="text" class="cmt">
+      <input type="text" id="passwd" name="passwd" placeholder="암호를 입력하세요">
+    </div>
+    <button type="submit">수정</button>
+  </form>
+</div> <!-- /container -->
+</body>
+</html>

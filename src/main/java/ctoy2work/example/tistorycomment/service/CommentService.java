@@ -29,8 +29,8 @@ public class CommentService {
     }
 
     // 댓글 삭제
-    public Optional<Comment> DeleteComment(Comment comment) {
-        return commentRepository.delete(comment.getId());
+    public Optional<Comment> DeleteComment(Long id) {
+        return commentRepository.delete(id);
     }
 
     // 댓글 수정
@@ -40,6 +40,10 @@ public class CommentService {
         modifiedComment.setCommentText(newText);
 
         return commentRepository.modify(modifiedComment);
+    }
+
+    public Optional<Comment> getComment(Long id) {
+        return commentRepository.search(id);
     }
 
 }

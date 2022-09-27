@@ -44,6 +44,8 @@ public class MemoryCommentRepository implements CommentRepository{
     // 데이터 수정
     @Override
     public Optional<Comment> modify(Comment comment) {
+        comment.setCommentTime(LocalDateTime.now().format(
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "(수정됨)");
         Comment res = store.put(comment.getId(), comment);
         return Optional.of(res);
     }
