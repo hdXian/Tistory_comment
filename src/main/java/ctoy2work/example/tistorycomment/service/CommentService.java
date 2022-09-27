@@ -37,7 +37,7 @@ public class CommentService {
     public Optional<Comment> ModifyComment(Long commentId, String newText) {
         Comment modifiedComment = commentRepository.search(commentId).get();
 
-        modifiedComment.setComment(newText);
+        modifiedComment.setCommentText(newText);
 
         return commentRepository.modify(modifiedComment);
     }

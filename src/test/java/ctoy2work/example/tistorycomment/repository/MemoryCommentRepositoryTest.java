@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 class MemoryCommentRepositoryTest {
@@ -18,8 +19,9 @@ class MemoryCommentRepositoryTest {
         Comment comment = new Comment();
         comment.setNickname("test1");
         comment.setPassword("123");
-        comment.setComment("hello world!");
-        comment.setCommentTime(LocalDateTime.now());
+        comment.setCommentText("hello world!");
+        String savedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        comment.setCommentTime(savedDate);
 
         // when
         commentRepository.add(comment);
@@ -38,8 +40,8 @@ class MemoryCommentRepositoryTest {
         Comment comment = new Comment();
         comment.setNickname("test1");
         comment.setPassword("123");
-        comment.setComment("hello world!");
-        comment.setCommentTime(LocalDateTime.now());
+        comment.setCommentText("hello world!");
+        comment.setCommentTime(LocalDateTime.now().toString());
 
         // when
         commentRepository.add(comment);

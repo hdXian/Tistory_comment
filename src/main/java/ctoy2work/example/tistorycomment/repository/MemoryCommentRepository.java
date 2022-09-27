@@ -3,6 +3,7 @@ package ctoy2work.example.tistorycomment.repository;
 import ctoy2work.example.tistorycomment.domain.Comment;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class MemoryCommentRepository implements CommentRepository{
@@ -13,7 +14,11 @@ public class MemoryCommentRepository implements CommentRepository{
     // 데이터 추가
     @Override
     public Comment add(Comment comment) { // 댓글 저장시 동작. 내부적으로 사용되는 id값만 설정하여 저장.
+        String addedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
         comment.setId(++sequence); // id값 설정.
+        comment.setCommentTime(addedDate);
+
         store.put(comment.getId(), comment); // 리포지토리에 comment 저장.
         return comment;
     }

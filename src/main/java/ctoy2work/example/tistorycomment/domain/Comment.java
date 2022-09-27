@@ -7,8 +7,8 @@ public class Comment {
     Long id; // 댓글 식별 번호
     String nickname; // 이름
     String password; // 암호
-    String comment; // 댓글 내용
-    LocalDateTime commentTime; // 댓글 작성 시간
+    String commentText; // 댓글 내용
+    String commentTime; // 댓글 작성 시간
 
     public Long getId() {
         return id;
@@ -18,11 +18,11 @@ public class Comment {
         this.id = id;
     }
 
-    public LocalDateTime getCommentTime() {
+    public String getCommentTime() {
         return commentTime;
     }
 
-    public void setCommentTime(LocalDateTime commentTime) {
+    public void setCommentTime(String commentTime) {
         this.commentTime = commentTime;
     }
 
@@ -42,11 +42,11 @@ public class Comment {
         this.password = password;
     }
 
-    public String getComment() {
-        return comment;
+    public String getCommentText() {
+        return commentText;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
     }
 }
