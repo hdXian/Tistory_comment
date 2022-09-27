@@ -49,17 +49,17 @@ public class HomePageController {
         return "/comments/modifyForm";
     }
 
-    @PostMapping("/comments/update/{id}")
-    public String modifyComment(@PathVariable("id") Long id, CommentForm form,
-                                Model model) {
-        String password = commentService.getComment(id).get().getPassword();
-        if (password.equals(form.getPasswd())) {
+    @PostMapping("/comments/modify/{id}")
+    public String modifyComment(@PathVariable("id") Long id, CommentForm form) {
+        Comment comment = commentService.getComment(id).get();
+        // 암호 검증 로직
+        if (comment.getPassword().equals(form.getPasswd())) {
             String modifiedComment = form.getText();
             commentService.ModifyComment(id, modifiedComment);
             return "redirect:/";
         }
         else {
-            return "redirect:/comments/modifyForm";
+            return "redirect:/comments/modify/{id}";
         }
     }
 
@@ -73,9 +73,14 @@ public class HomePageController {
     @PostMapping("/comments/delete/{id}")
     public String deleteComment(@PathVariable Long id, CommentForm form) {
         // form.getpasswd()를 통해 암호를 확인하는 로직
-
-        commentService.DeleteComment(id);
-        return "redirect:/";
+        Comment comment = commentService.getComment(id).get();
+        if(comment.getPassword().equals(form.getPasswd())) {
+            commentService.DeleteComment(id);
+            return "redirect:/";
+        }
+        else {
+            return "redirect:/comments/delete/{id}";
+        }
     }
 
 }

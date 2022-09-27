@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="container">
-  <form th:action="@{/comments/update/{id}(id= ${comment.id})}" method="post">
+  <form th:action="@{/comments/modify/{id}(id= ${comment.id})}" method="post">
     <div class="form-group">
       <input type="text" th:value="${comment.commentText}" id="text" name="text" class="cmt">
       <input type="text" id="passwd" name="passwd" placeholder="암호를 입력하세요">
