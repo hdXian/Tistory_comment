@@ -2,10 +2,12 @@ package ctoy2work.example.tistorycomment.service;
 
 import ctoy2work.example.tistorycomment.domain.Comment;
 import ctoy2work.example.tistorycomment.repository.CommentRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class CommentService {
 
     private final CommentRepository commentRepository;
